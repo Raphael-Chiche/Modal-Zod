@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Projet Modal avec Zod
 
 Voici mon premier projet avec Zod, c'est un essai d'envoi de formulaire en NextJs avec Zod.
-
+[![My Skills](https://skillicons.dev/icons?i=tailwind,nextjs)](https://skillicons.dev)
 ## Getting Started
 
 First, run the development server:
