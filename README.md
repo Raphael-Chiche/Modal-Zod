@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Projet Modal avec Zod
+
+Voici mon premier projet avec Zod, c'est un essai d'envoi de formulaire en NextJs avec Zod.
+
 ## Getting Started
 
 First, run the development server:
