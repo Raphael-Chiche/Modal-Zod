@@ -2,6 +2,8 @@
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 import {
   Form,
   FormControl,
@@ -10,7 +12,23 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
+import {
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -20,6 +38,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useState, useEffect } from "react";
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import { studeaVille } from "@/data/citys";
 
 const formSchema = z.object({
   emailadress: z
@@ -38,9 +59,12 @@ const formSchema = z.object({
       // invalid_type_error: "Nom doit être une chaîne de caractères",
     })
     .min(1, { message: "Le nom est requis" }),
-  status: z.enum(["a", "b", "c"], {
-    required_error: "Vous devez séléctionner votre status",
-  }),
+  status: z.enum(
+    ["étudiant", "étudiant en dernière année", "jeune actif"],
+    {
+      required_error: "Vous devez séléctionner votre status",
+    }
+  ),
   studea: z.string().optional(),
   where: z.enum(["socialMedia", "Nexity", "residence", "autre"], {
     required_error: "Vous devez séléctionner une option",
@@ -48,6 +72,9 @@ const formSchema = z.object({
 });
 
 export default function Home() {
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState("");
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -68,22 +95,75 @@ export default function Home() {
     setIsModalOpen(!isModalOpen);
   };
   return (
-    <main className=" w-screen h-screen flex flex-col justify-center items-center gap-4">
+    <main className="h-full w-full flex flex-col justify-center items-center gap-4">
       <p className=" font-bold text-3xl text-center">
         Clique sur le bouton pour ouvrir la modal !
       </p>
-      <button onClick={handleOpenModal} className=" text-xl px-4 py-2 bg-blueGradient rounded-xl ">
+      <button
+        onClick={handleOpenModal}
+        className=" text-xl px-4 py-2 bg-blueGradient rounded-xl "
+      >
         Clique
       </button>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
+      <p>kjhdsfghkjsdfhjk</p>
       {isModalOpen && (
-        <div className="bg-[rgba(5,31,82,.3)] w-screen h-screen absolute top-0 left-0 flex justify-center items-center text-[#0e225d]">
+        <div className="bg-[rgba(5,31,82,.3)] w-full h-full fixed top-0 left-0 flex justify-center items-center text-[#0e225d]">
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(handleSubmit)}
-              className=" max-w-md w-full flex flex-col gap-4 bg-white p-8 rounded-xl "
+              className=" max-w-md w-full flex flex-col gap-2 bg-white p-8 rounded-xl "
             >
               <div className="relative flex justify-center pb-4 mb-4 border-b border-[#f0f5ff] ">
-                <p className="font-bold text-lg">KitLeNid - Studéa</p>
+                <p className="font-bold text-lg">Kit le nid - Studéa</p>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -157,7 +237,7 @@ export default function Home() {
                       <FormLabel>Adresse e-mail*</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="Email Address"
+                          placeholder="Adresse e-mail"
                           type="email"
                           {...field}
                           className={fieldState.invalid ? "border-red-500" : ""}
@@ -175,7 +255,7 @@ export default function Home() {
                 render={({ field, fieldState }) => {
                   return (
                     <FormItem>
-                      <FormLabel>Status*</FormLabel>
+                      <FormLabel>Statut*</FormLabel>
                       <Select onValueChange={field.onChange}>
                         <FormControl>
                           <SelectTrigger
@@ -187,37 +267,13 @@ export default function Home() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="a">Étudiant</SelectItem>
-                          <SelectItem value="b">
+                          <SelectItem value="étudiant">Étudiant</SelectItem>
+                          <SelectItem value="étudiant en dernière année">
                             Étudiant en dernière année
                           </SelectItem>
-                          <SelectItem value="c">Jeune actif</SelectItem>
+                          <SelectItem value="jeune actif">Jeune actif</SelectItem>
                         </SelectContent>
                       </Select>
-                      <FormMessage />
-                    </FormItem>
-                  );
-                }}
-              />
-
-              <FormField
-                control={form.control}
-                name="studea"
-                render={({ field, fieldState }) => {
-                  return (
-                    <FormItem>
-                      <FormLabel>
-                        Si vous êtes locataire Studéa, dans quelle résidence
-                        Studéa habitez-vous ?
-                      </FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="..."
-                          type="string"
-                          {...field}
-                          className={fieldState.invalid ? "border-red-500" : ""}
-                        />
-                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   );
@@ -245,16 +301,16 @@ export default function Home() {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
+                          <SelectItem value="residence">
+                            Flyer / Application Studéa / Écran de la résidence
+                          </SelectItem>
                           <SelectItem value="socialMedia">
-                            Réseau sociaux / Site internet Studéa
+                            Site internet Studéa / Réseau sociaux
                           </SelectItem>
                           <SelectItem value="Nexity">
                             Site internet Nexity
                           </SelectItem>
-                          <SelectItem value="residence">
-                            En résidence : Flyer / Application Studéa / Écran de
-                            la résidence
-                          </SelectItem>
+
                           <SelectItem value="autre">Autre</SelectItem>
                         </SelectContent>
                       </Select>
@@ -263,6 +319,74 @@ export default function Home() {
                   );
                 }}
               />
+
+              <FormField
+                control={form.control}
+                name="studea"
+                render={({ field, fieldState }) => {
+                  return (
+                    <FormItem>
+                      <FormLabel>
+                        Si vous êtes locataire Studéa, dans quelle ville se
+                        situe votre résidence ?
+                      </FormLabel>
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <FormControl>
+                            <Button
+                              variant="outline"
+                              role="combobox"
+                              className={cn(
+                                "justify-between border-2 border-inputBlue text-",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              {field.value
+                                ? studeaVille.find(
+                                    (language) => language.value === field.value
+                                  )?.label
+                                : "Choisissez votre ville"}
+                              <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className=" p-0">
+                          <Command>
+                            <CommandInput
+                              placeholder="Cherchez votre résidence..."
+                              className="h-9 text-placeholder"
+                            />
+                            <CommandEmpty>Pas de ville trouvé.</CommandEmpty>
+                            <CommandList>
+                              {studeaVille.map((language) => (
+                                <CommandItem
+                                  value={language.label}
+                                  key={language.value}
+                                  onSelect={() => {
+                                    form.setValue("studea", language.value);
+                                  }}
+                                >
+                                  {language.label}
+                                  <CheckIcon
+                                    className={cn(
+                                      "ml-auto h-4 w-4",
+                                      language.value === field.value
+                                        ? "opacity-100"
+                                        : "opacity-0"
+                                    )}
+                                  />
+                                </CommandItem>
+                              ))}
+                            </CommandList>
+                          </Command>
+                        </PopoverContent>
+                      </Popover>
+                      <FormMessage />
+                    </FormItem>
+                  );
+                }}
+              />
+
               <Button type="submit" className="w-full bg-blueGradient">
                 Envoyer
               </Button>
